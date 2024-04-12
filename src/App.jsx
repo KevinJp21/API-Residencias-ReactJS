@@ -2,9 +2,12 @@ import './App.css'
 import { Suspense } from 'react'
 import {fetchData} from './fetchData'
 import DataTable from 'react-data-table-component';
+import styled from 'styled-components';
 
 const apiData = fetchData("http://localhost/Apiresidencia/getpropietario.php")
-
+const customSort = (rows, selector, direction) => {
+	return orderBy(rows, selector, direction);
+};
 function App() {
 const datas = apiData.read();
 
@@ -35,14 +38,17 @@ const columns = [
   }
 ]
 
+
   return (
     <div className="App">
-      <h1>Fetch Like a PRO</h1>
+      <h1>Propietarios Residencias</h1>
       <Suspense fallback={<div>Loading...</div>}>
       <DataTable
         columns={columns}
         data = {datas}
+        theme='custom'
         pagination
+        sortFunction={customSort}
       />
       </Suspense>
     </div>

@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+.rdt_TableHeadRow{
+  background-color: #212529 !important;
+  color: white;
+  font-size: 20px;
+}
+
+.rdt_TableRow{
+  color: white !important; 
+  font-size: 15px !important;
+}
+
+.rdt_TableRow:nth-child(odd){
+  background-color: #2C3034;
+}
+
+.rdt_TableRow:nth-child(even){
+  background-color: #212529;
+}
+
+.rdt_Pagination{
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+.kUwhdZ{
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+
