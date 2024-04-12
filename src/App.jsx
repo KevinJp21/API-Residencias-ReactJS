@@ -1,18 +1,20 @@
 import './App.css'
-import { useFetch } from './useFetch'
+import { Suspense } from 'react'
+import {fetchData} from './fetchData'
+
+const apiData = fetchData("http://localhost/Apiresidencia/getpropietario.php")
 function App() {
-  const {data, error} = useFetch("http://localhost/Apiresidencia/getpropietario.php")
+  const data = apiData.read();
   return (
-    <div className='App'>
-        <h1>Fetch Like a PRO</h1>
-        <div className="card">
-          <ul>
-            {error && <p>Error: {error}</p> /*Esta linea es un condicional if, Si el error existe se muestra, sino, no hace nada*/}   
-            {data?.map((user) => ( /*?= si existe*/
-              <li key={user.id}>{user.nombres} {user.apellidos}</li>
-              ))}
-          </ul>
-        </div>
+    <div className="App">
+      <h1>Fetch Like a PRO</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+      <ul className='card'>
+        {data?.map((user) => (
+          <li key={user.id}>{user.nombres} {user.apellidos}</li>
+        ))}
+      </ul>
+      </Suspense>
     </div>
   )
 }
